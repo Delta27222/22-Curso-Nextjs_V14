@@ -10,7 +10,7 @@ const Category = (props: CategoriesProps) => {
   const { categories } = props.params;
   const params = props.searchParams;
   return (
-    <div className="flex flex-col justify-center items-center ">
+    <div className="flex flex-col justify-center items-center p-24">
       <div className="font-bold text-3xl">Dinamic Category: {categories}</div>
     </div>
   )
