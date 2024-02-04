@@ -4,7 +4,7 @@ import { Hero } from "app/components/home/Hero/Hero";
 
 function Home() {
   return (
-    <main className="flex flex-col items-center justify-center p-24">
+    <main className="flex flex-col items-center justify-center">
       <Hero />
       <Description />
       <MainProducts />
