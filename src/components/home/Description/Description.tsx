@@ -5,7 +5,7 @@ const PLACEHOLDER_IMAGE = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4g
 export const Description = () => {
   return (
     <section className="grid grid-cols-2 max-w-5xl my-24 mx-auto  rounded-3xl gap-9 p-8">
-      <div className="relative max-w-[500px] max-h-[300px] ">
+      <div className="relative max-w-[500px] max-h-[300px] h-[500px]">
         <Image
           className="object-cover rounded-lg shadow-xl shadow-white/5 "
           src='/images/description.jpeg'
