@@ -1,10 +1,8 @@
 "use client"
-interface ErrorProps {
-  error: Error,
-  reset: () => void;
-}
 
-export default function Error({error, reset}: ErrorProps) {
+import { ErrorPageProps } from "../../../types"
+
+export default function Error({reset}: ErrorPageProps) {
   return (
     <div className="p-10">
       <h1>😢</h1>
