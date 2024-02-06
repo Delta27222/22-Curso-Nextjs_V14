@@ -1,13 +1,18 @@
 import Image from "next/image";
 
 const getProducts = async () => {
-  const response = await fetch(`${process.env.SHOPIFY_HOSTNAME}admin/api/2023-10/products.json`, {
-    headers: new Headers( {
-      "X-Shopify-Access-Token": process.env.SHOPIFY_API_KEY || ''
-    })
-  });
-  const data = await response.json();
-  return data;
+  try {
+    const response = await fetch(`${process.env.SHOPIFY_HOSTNAME}admin/api/2023-10/products.json`, {
+      headers: new Headers( {
+        "X-Shopify-Access-Token": process.env.SHOPIFY_API_KEY || ''
+      })
+    });
+    const { products } = await response.json();
+    return products;
+  }
+  catch (error) {
+    console.log(error);
+  }
 }
 
 interface Product {
@@ -21,25 +26,27 @@ interface Product {
 
 export const MainProducts = async () => {
   const products = await getProducts();
-  console.log("🚀 ~ MainProducts ~ products:", products)
 
   return (
-    <section className="flex flex-wrap justify-center items-center p-24">
-      <h1 className="font-bold text-3xl">MainProducts</h1>
-      {products && products.products.map((product: Product) => {
-        return (
-          <div key={product.id} className="flex flex-col justify-center items-center p-24">
-            <h1 className="font-bold text-3xl">{product.title}</h1>
-            <span>{product.images[0].src}</span>
-            <Image
-              src={product.images[0].src}
-              alt={product.title}
-              width={200}
-              height={200}
-            />
-          </div>
-        )
-      })}
+    <section className="w-full space-y-6">
+      <h3 className="text-center text-5xl">🌟 New products release!</h3>
+        <div className="grid grid-cols-2 grid-rows-3 w-full">
+          {products && products.map((product: Product) => {
+            const imageSrc = product.images[0].src;
+            return (
+              <article key={product.id} className="relative z-10 min-h-96">
+                <p className="absolute top-0 right-6 z-10 text-2xl font-bold max-w-96 text-left">{product.title}</p>
+                <Image
+                  className="h-96  opacity-40 object-cover"
+                  src={imageSrc}
+                  alt={product.title}
+                  fill
+                  loading="eager"
+                  />
+              </article>
+            )
+          })}
+        </div>
     </section>
   )
 }
