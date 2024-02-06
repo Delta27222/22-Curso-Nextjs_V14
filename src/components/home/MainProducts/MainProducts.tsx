@@ -31,7 +31,7 @@ export const MainProducts = async () => {
     <section className="w-full space-y-6">
       <h3 className="text-center text-5xl mb-10">🌟 New products release!</h3>
         <div className="grid grid-cols-2 grid-rows-3 w-full">
-          {products && products.map((product: Product) => {
+          {products.map((product: Product) => {
             const imageSrc = product.images[0].src;
             return (
               <article key={product.id} className="relative z-10 min-h-96">
